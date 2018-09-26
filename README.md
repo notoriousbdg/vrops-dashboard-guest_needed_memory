@@ -1,13 +1,15 @@
 # VMs with Guest Needed Memory not Collecting Dashboard for vRealize Operations 6.7
 ---------
 
-Identify VMs that are not collecting Guest Needed Memory metric that's used by the [vRealize Operations](https://www.vmware.com/products/vrealize-operations.html) capacity engine.  Included is a dashboard and optional alerts.
+Use this dashboard and alerts to identify VMs with Guest Needed Memory not collecting, as mentioned in [KB 55675](https://kb.vmware.com/s/article/55675).  Affected VMs may show higher Memory Workload, lower Capacity Remaining and lower Time Remaining than expected.
 
 ## Dashboard
 ![Dashboard](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Dashboard.png)
 
-## Alerts and Recommendations
+## Alerts
 ![Alerts](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Alerts.png)
+
+## Recommendations
 ![Recommendations](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Recommendations.png)
 
 ## Installation
