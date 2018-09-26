@@ -1,15 +1,19 @@
 # VMs with Guest Needed Memory not Collecting Dashboard for vRealize Operations 6.7
 ---------
 
-Identify VMs that are not collecting Guest Needed Memory metric that's used by the [vRealize Operations](https://www.vmware.com/products/vrealize-operations.html) capacity engine.  
+Identify VMs that are not collecting Guest Needed Memory metric that's used by the [vRealize Operations](https://www.vmware.com/products/vrealize-operations.html) capacity engine.  Included is a dashboard and optional alerts.
 
+## Dashboard
 ![Dashboard](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Dashboard.png)
 
+## Alerts and Recommendations
+![Alerts](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Alerts.png)
+![Recommendations](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Recommendations.png)
 
 ## Installation
 1. Import the super metric at `Administration` / `Configuration` / `Super Metrics` / `Import Super Metric`  
 ![Import View](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Import_Super_Metric.png)
-2. Click `Browse...` then select the file named [SuperMetric - Guest Needed Memory is not collecting.json](https://github.com/notoriousbdg/vrops-dashboard-guest_needed_memory/raw/master/SuperMetric%20-%20Guest%20Needed%20Memory%20is%20not%20collecting.zip)
+2. Click `Browse...` then select the file named [SuperMetric - Guest Needed Memory is not collecting.json](https://github.com/notoriousbdg/vrops-dashboard-guest_needed_memory/raw/master/SuperMetric%20-%20Guest%20Needed%20Memory%20is%20not%20collecting.json)
 3. Edit the Policy at `Administration` / `Policies` / `Policy Library`.  The policy should be `vSphere Solution's Default Policy (DATE)` unless a new policy was explicitly created.  
 ![Policy Library](https://raw.githubusercontent.com/notoriousbdg/vrops-dashboard-guest_needed_memory/master/Policy_Library.png)
 4. Enable `Super Metric|Guest Needed Memory is not collecting` metric for Virtual Machine object type only  
