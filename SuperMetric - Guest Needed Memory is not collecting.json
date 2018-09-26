@@ -1,0 +1,1 @@
+{"1865d4e2-00e4-4d8c-8ff5-04e084419d73":{"resourceKinds":[{"resourceKindKey":"VirtualMachine","adapterKindKey":"VMWARE"}],"name":"Guest Needed Memory is not collecting","formula":"${this, metric=sys|poweredOn} && max(${this, metric=guest|mem.needed_latest}) == 0","description":""}}

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><alertContent>
+    <AlertDefinitions>
+        <AlertDefinition adapterKind="VMWARE" id="AlertDefinition-29c91fa4-7e27-422e-97ee-2e3906e423e4" name="High memory workload caused by Guest Memory Needed metric not being collected" resourceKind="VirtualMachine" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="and">
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom negateCondition="true" ref="SymptomDefinition-07956268-8433-4988-a7cc-2035265d4f52"/>
+                        <Symptom negateCondition="true" ref="SymptomDefinition-VMWARE-VMPoweredOff"/>
+                        <Symptom ref="SymptomDefinition-afa1d19a-2897-4cef-b94e-cda9f9d0c8cb"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="or">
+                        <Symptom ref="SymptomDefinition-VMWARE-VMMemWorkloadWarning"/>
+                        <Symptom ref="SymptomDefinition-VMWARE-VMMemWorkloadImmediate"/>
+                        <Symptom ref="SymptomDefinition-VMWARE-VMMemWorkloadCritical"/>
+                    </SymptomSet>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="2" ref="Recommendation-ud-eb586892-11fd-4deb-8eab-edd86f6bc485"/>
+                    <Recommendation priority="4" ref="Recommendation-ud-23fa4853-db4f-4d0a-9eb3-62dcb2e2e1e3"/>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-InstallRunVMTools"/>
+                    <Recommendation priority="3" ref="Recommendation-ud-cd06ef3d-ee83-4e9b-862c-9d9faeb5a90e"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" id="AlertDefinition-f2bc3e51-71ce-4bdd-a862-341a831072d1" name="Cluster memory workload is elevated due to a large number of VMs missing data for the Guest Memory Needed metric" resourceKind="ClusterComputeResource" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="and">
+                    <SymptomSet aggregation="percent" aggregationOperator="&gt;" applyOn="descendant" operator="and" value="20.0">
+                        <Symptom negateCondition="true" ref="SymptomDefinition-07956268-8433-4988-a7cc-2035265d4f52"/>
+                        <Symptom negateCondition="true" ref="SymptomDefinition-VMWARE-VMPoweredOff"/>
+                        <Symptom ref="SymptomDefinition-afa1d19a-2897-4cef-b94e-cda9f9d0c8cb"/>
+                    </SymptomSet>
+                    <SymptomSet aggregation="percent" aggregationOperator="&gt;" applyOn="descendant" operator="or" value="20.0">
+                        <Symptom ref="SymptomDefinition-VMWARE-VMMemWorkloadWarning"/>
+                        <Symptom ref="SymptomDefinition-VMWARE-VMMemWorkloadImmediate"/>
+                        <Symptom ref="SymptomDefinition-VMWARE-VMMemWorkloadCritical"/>
+                    </SymptomSet>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="2" ref="Recommendation-ud-eb586892-11fd-4deb-8eab-edd86f6bc485"/>
+                    <Recommendation priority="4" ref="Recommendation-ud-23fa4853-db4f-4d0a-9eb3-62dcb2e2e1e3"/>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-InstallRunVMTools"/>
+                    <Recommendation priority="3" ref="Recommendation-ud-cd06ef3d-ee83-4e9b-862c-9d9faeb5a90e"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+    </AlertDefinitions>
+    <SymptomDefinitions>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" id="SymptomDefinition-VMWARE-VMMemWorkloadImmediate" name="Virtual machine memory workload is at Immediate level" resourceKind="VirtualMachine" waitCycle="3">
+            <State severity="immediate">
+                <Condition key="mem|workload" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" id="SymptomDefinition-afa1d19a-2897-4cef-b94e-cda9f9d0c8cb" name="Memory Workload has failed back to Memory Consumed" resourceKind="VirtualMachine" waitCycle="3">
+            <State severity="info">
+                <Condition key="mem|consumedPct" operator="=" targetKey="mem|workload" thresholdType="metric" type="metric" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" id="SymptomDefinition-07956268-8433-4988-a7cc-2035265d4f52" name="Guest Needed Memory is collecting" resourceKind="VirtualMachine" waitCycle="3">
+            <State severity="info">
+                <Condition key="guest|mem.needed_latest" operator="&gt;" thresholdType="static" type="metric" value="0.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" id="SymptomDefinition-VMWARE-VMMemWorkloadWarning" name="Virtual machine memory workload is at Warning level" resourceKind="VirtualMachine" waitCycle="3">
+            <State severity="warning">
+                <Condition key="mem|workload" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" id="SymptomDefinition-VMWARE-VMMemWorkloadCritical" name="Virtual machine memory workload is at Critical level" resourceKind="VirtualMachine" waitCycle="3">
+            <State severity="critical">
+                <Condition key="mem|workload" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" id="SymptomDefinition-VMWARE-VMPoweredOff" name="Virtual machine is powered off" resourceKind="VirtualMachine">
+            <State severity="info">
+                <Condition key="sys|poweredOn" operator="=" thresholdType="static" type="metric" value="0.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+    </SymptomDefinitions>
+    <Recommendations>
+        <Recommendation key="Recommendation-ud-cd06ef3d-ee83-4e9b-862c-9d9faeb5a90e">
+            <Description>For Windows VMs, ensure that VMware Tools is 10.3.2 or newer is installed.&amp;nbsp; Refer to&amp;nbsp;&lt;a target="_blank" href="https://kb.vmware.com/s/article/55675"&gt;https://kb.vmware.com/s/article/55675&lt;/a&gt;&amp;nbsp;for additional information.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-ud-eb586892-11fd-4deb-8eab-edd86f6bc485">
+            <Description>Verify that vCenter and ESXi are 6.0u1 or newer.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-ud-23fa4853-db4f-4d0a-9eb3-62dcb2e2e1e3">
+            <Description>Disconnect and reconnect the parent host in vCenter.&amp;nbsp; Refer to&amp;nbsp;&lt;a target="_blank" href="https://kb.vmware.com/s/article/55675"&gt;https://kb.vmware.com/s/article/55675&lt;/a&gt;&amp;nbsp;for additional information.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-InstallRunVMTools">
+            <Description>Ensure that VMware Tools is running in the virtual machine.</Description>
+        </Recommendation>
+    </Recommendations>
+</alertContent>
