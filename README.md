@@ -1,4 +1,4 @@
-# VMs with Guest Needed Memory not Collecting Dashboard for vRealize Operations 6.7, 7.0, 7.5, 8.0, and 8.1
+# VMs with Guest Needed Memory not Collecting Dashboard for vRealize Operations 6.7, 7.0, 7.5, 8.0, 8.1, and Cloud
 ---------
 
 Use this dashboard and alerts to identify VMs with Guest Needed Memory not collecting in [vRealize Operations](https://www.vmware.com/products/vrealize-operations.html), as mentioned in [KB 55675](https://kb.vmware.com/s/article/55675).  Affected VMs may show higher Memory Workload, lower Capacity Remaining and lower Time Remaining than expected.  It's recommended to address the issues affecting collection to ensure the capacity engine has the most accurate data from VMware Tools.
@@ -34,6 +34,6 @@ Use this dashboard and alerts to identify VMs with Guest Needed Memory not colle
 
 ## Support
 
-This dashboard requires vRealize Operation 6.7, 7.0, 7.5, 8.0, or 8.1 Advanced or Enterprise edition.
+This dashboard requires vRealize Operation 6.7, 7.0, 7.5, 8.0, or 8.1 Advanced or Enterprise edition or vRealize Operations Cloud.
 
 Please open an [issue](https://github.com/notoriousbdg/vrops-dashboard-guest_needed_memory/issues) for feedback.
